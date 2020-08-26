@@ -8,11 +8,10 @@ import {getAllStatuses} from "../../services/summary-service";
 
 const HomeLoader = () => {
 
-    const context = useContext(RootContext)
-    const { isLoading, msg, handleMsgChange, handleStatusChange } = context;
+    const state = useContext(RootContext)
 
     useEffect( () => {
-        getAllStatuses(() => handleMsgChange, () => handleStatusChange);
+        getAllStatuses( state.handleMsgChange,  state.handleStatusChange);
     }, [getAllStatuses]);
 
 
@@ -20,8 +19,8 @@ const HomeLoader = () => {
     return(
 
         <div className={"admin-container"}>
-            <LoadingView isLoading={isLoading} message={"Loading..."}/>
-            {!isLoading && (
+            <LoadingView isLoading={state.isLoading} message={"Loading..."}/>
+            {!state.isLoading && (
                 <Home/>
             )}
         </div>

@@ -18,14 +18,24 @@ const initialState = {
 const basicReducer = (state, action) => {
     switch (action.type) {
         case 'UPDATE_STATUS':
-            let statuses = state.statuses.map(status => {
-                if (status.id === action.id) {
-                    return {...status, now: action.now, day: action.day, week: action.week};
-                } else {
-                    return status;
+            if(state.statuses.length == 0){
+                return {...state, statuses: [{id: action.id, now: action.now, day: action.day, week: action.week}]};
+            }else{
+                let found = false;
+                let statuses = state.statuses.map(status => {
+                    if (status.id === action.id) {
+                        return {id: action.id, now: action.now, day: action.day, week: action.week};
+                        found = true;
+                    } else {
+                        return status;
+                    }
+                });
+                if(!found){
+                    statuses.push({id: action.id, now: action.now, day: action.day, week: action.week})
                 }
-            });
-            return {...state, statuses: statuses};
+                return {...state, statuses: statuses};
+            }
+
         case 'UPDATE_MSG':
             return {...state, msg: {msg: action.msg, type: action.msgType}};
         case 'EMPTY_MSG':
@@ -50,16 +60,17 @@ function App() {
     );
 
     const handleStatusChange = status => {
+
         dispatch({type: 'UPDATE_STATUS', id: status.id, now: status.now, day: status.day, week: status.week});
     };
 
     const handleMsgChange = msg => {
-        console.log("here")
+
         if (Object.keys(msg).length === 0) {
             dispatch({type: 'EMPTY_MSG'});
-        } else if (msg.toString().localeCompare(doneLoadingMsg.toString())) {
+        } else if (msg === doneLoadingMsg) {
             dispatch({type: 'DONE_LOADING'});
-        } else if (msg.toString().localeCompare(loadingMsg.toString())) {
+        } else if (msg === loadingMsg) {
             dispatch({type: 'LOADING'});
         } else {
             dispatch({type: 'UPDATE_MSG', msg: msg.msg, msgType: msg.type});
@@ -67,13 +78,13 @@ function App() {
     };
 
     const contextValue = useMemo(() => {
-        return {state, handleStatusChange, handleMsgChange};
+        return {...state, handleStatusChange, handleMsgChange};
     }, [state, handleStatusChange, handleMsgChange]);
 
     return (
 
             <div className="App">
-                <RootContext.Provider value={{contextValue}}>
+                <RootContext.Provider value={contextValue}>
                     <MainRouter />
 
                 </RootContext.Provider>

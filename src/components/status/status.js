@@ -39,6 +39,7 @@ const StatusCard = ({status}) => {
                 </tr>
                 </tbody>
             </table>
+            <hr/>
         </div>
     )
 
