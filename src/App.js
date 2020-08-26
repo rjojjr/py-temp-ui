@@ -1,8 +1,9 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 import {networkErrorMsg, loadingMsg, doneLoadingMsg} from "./constants";
+import {getAllStatuses} from "./services/summary-service";
 
 const initialState = {
     isLoading: false,
@@ -44,6 +45,14 @@ function App() {
         initialState
     );
 
+    const onReloadNeeded = useCallback(async () => {
+        await getAllStatuses(handleMsgChange, handleStatusChange);
+    }, [])
+
+    useEffect(() => {
+        onReloadNeeded()
+    }, []);
+
     const handleStatusChange = status => {
         dispatch({type: 'UPDATE_STATUS', id: status.id, now: status.now, day: status.day, week: status.week});
     };
@@ -61,8 +70,8 @@ function App() {
     };
 
     const contextValue = useMemo(() => {
-        return {state, handleStatusChange, handleMsgChange};
-    }, [state, handleStatusChange, handleMsgChange]);
+        return {state, handleStatusChange, handleMsgChange, onReloadNeeded};
+    }, [state, handleStatusChange, handleMsgChange, onReloadNeeded]);
 
     return (
         <RootContext.Provider value={{contextValue}}>
