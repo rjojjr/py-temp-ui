@@ -16,9 +16,7 @@
     "react-loading": "^2.0.3",
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
