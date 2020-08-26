@@ -1,9 +1,13 @@
-import React, {useCallback, useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useReducer} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 import {networkErrorMsg, loadingMsg, doneLoadingMsg} from "./constants";
 import {getAllStatuses} from "./services/summary-service";
+import HomeLoader from "./components/loaders/home-loader";
+
+import RootContext from "./components/context/root-context";
+import MainRouter from "./components/router/main-router";
 
 const initialState = {
     isLoading: false,
@@ -35,12 +39,12 @@ const basicReducer = (state, action) => {
     }
 };
 
-const RootContext = React.createContext("something");
+
 
 
 function App() {
 
-    const [state, dispatch] = React.useReducer(
+    const [state, dispatch] = useReducer(
         basicReducer,
         initialState
     );
@@ -74,24 +78,13 @@ function App() {
     }, [state, handleStatusChange, handleMsgChange, onReloadNeeded]);
 
     return (
-        <RootContext.Provider value={{contextValue}}>
+
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn React
-                    </a>
-                </header>
+                <RootContext.Provider value={{contextValue}}>
+                    <MainRouter />
+
+                </RootContext.Provider>
             </div>
-        </RootContext.Provider>
     );
 }
 

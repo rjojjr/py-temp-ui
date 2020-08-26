@@ -6,9 +6,10 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import {Link} from "react-router-dom";
-import {HomeNavBar} from "../nav-bars/nav-bars";
+import {Link} from "react-router-dom"
 import Footer from "../global/footer";
+import HomeLoader from "../loaders/home-loader";
+import {HomeNavBar} from "../nav/nav-bars";
 
 const MainRouter = () => {
     return (
@@ -17,7 +18,7 @@ const MainRouter = () => {
 
                 <Switch>
                     <Route exact path="/">
-                        //Render home comp
+                        <HomeLoader />
                     </Route>
                 </Switch>
             </div>
