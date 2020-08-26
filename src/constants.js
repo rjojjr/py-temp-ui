@@ -12,3 +12,7 @@ export const loadingMsg = {
     msg: "Loading...",
     type: "Loading"
 }
+
+export const doneLoadingMsg = {
+    type: "Loading_Done"
+}

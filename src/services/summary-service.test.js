@@ -1,5 +1,5 @@
 import * as axiosService from "./axios-service"
-import {networkErrorMsg, loadingMsg, sensors} from "../constants";
+import {networkErrorMsg, loadingMsg, doneLoadingMsg, sensors} from "../constants";
 import {getStatus, getAllStatuses} from "./summary-service";
 
 describe('summary service', () => {
@@ -42,8 +42,8 @@ describe('summary service', () => {
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
             expect(msgArray.length).toBe(2);
             expect(statusArray.length).toBe(1);
-            expect(msgArray.pop().toString()).toBe({}.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
             expect(statusArray.pop().toString()).toBe(status.toString())
         });
 
@@ -62,10 +62,11 @@ describe('summary service', () => {
             }
 
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(2);
+            expect(msgArray.length).toBe(3);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
         });
 
 
@@ -85,10 +86,11 @@ describe('summary service', () => {
             }
 
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(2);
+            expect(msgArray.length).toBe(3);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
         });
 
 
@@ -139,7 +141,7 @@ describe('summary service', () => {
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
             expect(msgArray.length).toBe(4);
             expect(statusArray.length).toBe(2);
-            expect(msgArray.pop().toString()).toBe({}.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
             expect(msgArray.pop().toString()).toBe({}.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
@@ -162,12 +164,14 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(4);
+            expect(msgArray.length).toBe(6);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
         });
 
 
@@ -187,12 +191,14 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(4);
+            expect(msgArray.length).toBe(6);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
             expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
             expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
+            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
         });
 
 

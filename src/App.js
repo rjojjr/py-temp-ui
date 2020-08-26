@@ -2,34 +2,33 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-const initialStatuses = [];
-const initialMsg = [];
+import { networkErrorMsg, loadingMsg, doneLoadingMsg } from "./constants";
 
-const statusReducer = (state, action) => {
+const initialState = {
+  isLoading: false,
+  statuses: [],
+  msg: {}
+};
+
+const basicReducer = (state, action) => {
   switch (action.type) {
-    case 'UPDATE':
-      return state.map(status => {
+    case 'UPDATE_STATUS':
+      let statuses = state.statuses.map(status => {
         if (status.id === action.id) {
           return { ...status, now: action.now, day: action.day , week: action.week};
         } else {
           return status;
         }
       });
-    default:
-      return state;
-  }
-};
-
-const msgReducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE':
-      return state.map(msg => {
-        return { ...msg, msg: action.msg, type: action.msgType};
-      });
-    case 'EMPTY':
-      return state.map(msg => {
-        return [];
-      });
+      return {...state, statuses: statuses};
+    case 'UPDATE_MSG':
+      return { ...state, msg: { msg: action.msg, type: action.msgType}};
+    case 'EMPTY_MSG':
+      return { ...state, msg: {}};
+    case 'DONE_LOADING':
+      return { ...state, isLoading: false};
+    case 'LOADING':
+      return { ...state, isLoading: true};
     default:
       return state;
   }
@@ -37,25 +36,24 @@ const msgReducer = (state, action) => {
 
 function App() {
 
-  const [statuses, dispatchStatus] = React.useReducer(
-      statusReducer,
-      initialMsg
-  );
-
-  const [msgs, dispatchMsg] = React.useReducer(
-      msgReducer,
-      initialStatuses
+  const [msgs, dispatch] = React.useReducer(
+      basicReducer,
+      initialState
   );
 
   const handleStatusChange = status => {
-    dispatchStatus({ type: 'UPDATE', id: status.id, now: status.now, day: status.day, week: status.week });
+    dispatch({ type: 'UPDATE_STATUS', id: status.id, now: status.now, day: status.day, week: status.week });
   };
 
   const handleMsgChange = msg => {
     if(Object.keys(msg).length === 0){
-      dispatchMsg({ type: 'EMPTY' });
+      dispatch({ type: 'EMPTY_MSG' });
+    } else if (msg.toString().localeCompare(doneLoadingMsg.toString())) {
+      dispatch({ type: 'DONE_LOADING' });
+    } else if (msg.toString().localeCompare(loadingMsg.toString())) {
+      dispatch({ type: 'LOADING' });
     } else {
-      dispatchMsg({ type: 'UPDATE', msg: msg.msg, msgType: msg.type });
+      dispatch({ type: 'UPDATE_MSG', msg: msg.msg, msgType: msg.type });
     }
   };
 

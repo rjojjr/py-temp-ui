@@ -1,5 +1,5 @@
 import { getSummary } from "./axios-service"
-import { networkErrorMsg, loadingMsg, sensors } from "../constants";
+import { networkErrorMsg, loadingMsg, doneLoadingMsg, sensors } from "../constants";
 
 export async function getAllStatuses(handleMsg, handleStatus) {
     sensors.forEach(sensor => {
@@ -12,18 +12,20 @@ export async function getStatus(sensor, handleMsg, handleStatus) {
         handleMsg(loadingMsg);
         const apiResponse = await getSummary(sensor.url, sensor.room);
         if(apiResponse.status === 200){
-            handleMsg({});
             const status = {
                 id: sensor.room,
                 now: apiResponse.data.now,
                 day: apiResponse.data.day,
                 week: apiResponse.data.week
-            }
-            handleStatus(status)
+            };
+            handleStatus(status);
+            handleMsg(doneLoadingMsg);
         } else {
             handleMsg(networkErrorMsg);
+            handleMsg(doneLoadingMsg);
         }
     } catch (error) {
         handleMsg(networkErrorMsg);
+        handleMsg(doneLoadingMsg);
     }
 }
