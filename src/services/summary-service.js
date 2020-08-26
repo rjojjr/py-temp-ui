@@ -1,4 +1,4 @@
-import { getSummary} from "./axios-service"
+import { getSummary } from "./axios-service"
 import { networkErrorMsg, loadingMsg, sensors } from "../constants";
 
 export async function getAllStatuses(handleMsg, handleStatus) {
