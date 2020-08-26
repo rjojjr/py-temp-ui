@@ -3,8 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 
 const initialStatuses = [];
+const initialMsg = [];
 
-const basicReducer = (state, action) => {
+const statusReducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE':
       return state.map(status => {
@@ -19,15 +20,43 @@ const basicReducer = (state, action) => {
   }
 };
 
+const msgReducer = (state, action) => {
+  switch (action.type) {
+    case 'UPDATE':
+      return state.map(msg => {
+        return { ...msg, msg: action.msg, type: action.msgType};
+      });
+    case 'EMPTY':
+      return state.map(msg => {
+        return [];
+      });
+    default:
+      return state;
+  }
+};
+
 function App() {
 
-  const [statuses, dispatch] = React.useReducer(
-      basicReducer,
+  const [statuses, dispatchStatus] = React.useReducer(
+      statusReducer,
+      initialMsg
+  );
+
+  const [msgs, dispatchMsg] = React.useReducer(
+      msgReducer,
       initialStatuses
   );
 
   const handleStatusChange = status => {
-    dispatch({ type: 'UPDATE', id: status.id, now: status.now, day: status.day, week: status.week });
+    dispatchStatus({ type: 'UPDATE', id: status.id, now: status.now, day: status.day, week: status.week });
+  };
+
+  const handleMsgChange = msg => {
+    if(Object.keys(msg).length === 0){
+      dispatchMsg({ type: 'EMPTY' });
+    } else {
+      dispatchMsg({ type: 'UPDATE', msg: msg.msg, msgType: msg.type });
+    }
   };
 
   return (
