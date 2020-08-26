@@ -1,0 +1,340 @@
+
+@import "~bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
+$mainHeaderColor: #808080;
+$childHeaderColor: #d9d9d9;
+$mainContentColor: #ffffff;
+$navColor: 	#cccccc;
+$lightTextColor: #f7e8ff;
+$midDarkTextColor: 	#990000;
+$primaryDarkColor: theme-color("dark");
+$primaryLightColor: #BBDEFB;
+$primaryColor: #2196F3;
+$textIconColor: #FFFFFF;
+$primaryTextColor: #212121;
+$accentColor: #607D8B;
+$secondaryTextColor: #757575;
+$dividerColor: #BDBDBD;
+
+hr{
+  color: $primaryDarkColor;
+}
+
+/** {
+  box-sizing: border-box;
+}*/
+html, body, .viewport {
+  //width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/*@media only screen and (max-width: 900px) {
+  .vbox{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; !* align items in Main Axis *!
+    align-items: stretch; !* align items in Cross Axis *!
+    align-content: stretch; !* Extra space in Cross Axis *!
+    height: 100%;
+  }
+  .pageContainer{
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    overflow-x: auto;
+    padding: 0;
+    border: 0;
+
+  }
+
+  #main > section {
+    //display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    //height: 100%;
+    margin-right: 30px;
+    margin-left: 30px;
+    //flex: 1;
+    flex: 5;
+    width: 80%;
+    //height: 80%;
+    overflow: auto;
+
+  }
+}*/
+
+.vbox{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* align items in Main Axis */
+  align-items: stretch; /* align items in Cross Axis */
+  align-content: stretch; /* Extra space in Cross Axis */
+  height: 100vh;
+}
+
+.scrollPage {
+  overflow-y: auto;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 84vh;
+  //min-height: 0px;
+  //flex: 1;
+  flex: 5;
+  width: 100%;
+  //height: 80%;
+}
+
+.scatterChart{
+  width: 100%;
+}
+
+.scrollChart {
+  overflow-x: auto;
+}
+
+.pageContainer{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  overflow-x: auto;
+  padding: 0;
+  border: 0;
+  height: 100vh;
+}
+
+div{
+}
+
+#main {
+  display: flex;
+ flex: 1;
+ // width: 100%;
+}
+#main > article {
+  justify-content: center;
+  align-items: center;
+  //flex-direction: row;
+  //flex-direction: row;
+}
+
+#main > article {
+  //justify-content: center;
+  //align-items: center;
+  flex: 1;
+}
+
+#main > section {
+  //display: flex;
+  height: 100%;
+  overflow: auto;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  //height: 100%;
+
+  //flex: 1;
+  flex: 5;
+  width: 100%;
+  //height: 80%;
+
+}
+
+.lightText {
+  color: $textIconColor;
+}
+
+.medDarkText{
+  color: $primaryTextColor;
+}
+#main > nav,
+#main > aside {
+  flex: 1;
+  background: $primaryLightColor;
+  //height: 100%;
+ }
+#main > nav {
+  order: -1;
+}
+header, footer, article, section, nav, aside {
+  //display: flex;
+  //flex: 1;
+  padding: 1em;
+}
+
+.deviceIndicator{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+head{
+
+}
+
+
+.chartContainer {
+  overflow-x: auto;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+
+.page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2{
+    text-align: center;
+  }
+}
+
+/*.visualDateContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}*/
+
+.visualDateContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+header{
+  //height: 7%;
+  //min-height: 60px;
+  min-height: 5vh;
+  background: $primaryDarkColor;
+  color: $textIconColor;
+}
+footer {
+  background: $primaryDarkColor;
+  min-height: 5vh;
+  //height: 7%;
+}
+
+section {
+
+}
+
+.headerButtonContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin: 0.5rem;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+td{
+  padding: 20px;
+}
+
+th {
+  text-align: center;
+}
+
+.nav {
+  width:auto!important;
+}
+
+.navbar > .container {
+  width:auto!important;
+}
+
+/*
+html {
+  height: 100%;
+}
+
+.pageContainer {
+  height: 100%;
+  overflow: hidden;  //!*makes the body non-scrollable (we will add scrolling to the sidebar and main content containers)*!
+  margin: 0px;  //!*removes default style*!
+  display: flex;  //!*enables flex content for its children*!
+  box-sizing: border-box;
+}
+
+.column-right {
+  height: 100%;  !*allows both columns to span the full height of the browser window*!
+  display: flex;
+  align-items: center;
+  flex: 5;
+  flex-direction: column;  !*places the left and right headers above the bottom content*!
+}
+
+
+.column-left {
+  height: 100%;  !*allows both columns to span the full height of the browser window*!
+  //display: flex;
+  align-items: stretch;
+  flex: 1;
+  flex-direction: column;  !*places the left and right headers above the bottom content*!
+}
+#left {
+  flex-shrink: 0;  !*makes sure that content is not cut off in a smaller browser window*!
+  flex: 1;
+}
+
+#right {
+  flex: 5;
+}
+
+.top-left {
+  flex-shink: 0;
+  height: 150px;
+}
+
+.top-right {
+  flex-shrink: 0;
+  display: inline-flex;
+  height: 150px;
+}
+
+ul {
+  display: inline-flex;
+  list-style: none;
+}
+
+.bottom {
+  flex-grow: 1;  !*ensures that the container will take up the full height of the parent container*!
+  overflow-y: auto;  !*adds scroll to this container*!
+}
+body {
+  display: flex;
+  //justify-content: center;
+  //align-items: center;
+  width: 100%;
+  //background-image: url('/picenterbkgd.webp');
+  //background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+!*.logOnPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+
+}*!
+
+.summaryTable{
+  width: 100%;
+}*/
