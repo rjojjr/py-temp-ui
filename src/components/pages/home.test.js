@@ -11,7 +11,7 @@ describe('home', () => {
 
     describe('render', () => {
 
-        it('properly', () => {
+        it('properly', async () => {
             const success = {
                 status: 200,
                 data: {
@@ -38,13 +38,15 @@ describe('home', () => {
             const mock = jest.spyOn(axiosService, "getSummary");
             mock.mockResolvedValue(success);
 
-            const { container, findAllByText } = render(
+           const { container, findByText } = render(
                 <App/>
             );
 
             expect(container.querySelector("div#homeNav")).toBeInTheDocument();
             expect(container.querySelector("div.homePage")).toBeInTheDocument();
             expect(container.querySelector("footer")).toBeInTheDocument();
+
+            expect(findByText(sensors[0].room)).toBeInTheDocument();
         });
 
     })

@@ -49,19 +49,12 @@ function App() {
         initialState
     );
 
-    const onReloadNeeded = useCallback(async () => {
-        await getAllStatuses(handleMsgChange, handleStatusChange);
-    }, [])
-
-    useEffect(() => {
-        onReloadNeeded()
-    }, []);
-
     const handleStatusChange = status => {
         dispatch({type: 'UPDATE_STATUS', id: status.id, now: status.now, day: status.day, week: status.week});
     };
 
     const handleMsgChange = msg => {
+        console.log("here")
         if (Object.keys(msg).length === 0) {
             dispatch({type: 'EMPTY_MSG'});
         } else if (msg.toString().localeCompare(doneLoadingMsg.toString())) {
@@ -74,8 +67,8 @@ function App() {
     };
 
     const contextValue = useMemo(() => {
-        return {state, handleStatusChange, handleMsgChange, onReloadNeeded};
-    }, [state, handleStatusChange, handleMsgChange, onReloadNeeded]);
+        return {state, handleStatusChange, handleMsgChange};
+    }, [state, handleStatusChange, handleMsgChange]);
 
     return (
 

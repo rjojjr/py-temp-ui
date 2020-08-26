@@ -1,7 +1,8 @@
 import { getSummary } from "./axios-service"
 import { networkErrorMsg, loadingMsg, doneLoadingMsg, sensors } from "../constants";
 
-export async function getAllStatuses(handleMsg, handleStatus) {
+export function getAllStatuses(handleMsg, handleStatus) {
+
     sensors.forEach(sensor => {
         getStatus(sensor, handleMsg, handleStatus);
     })

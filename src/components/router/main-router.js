@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
     BrowserRouter, withRouter
 } from "react-router-dom";
@@ -10,8 +10,10 @@ import {Link} from "react-router-dom"
 import Footer from "../global/footer";
 import HomeLoader from "../loaders/home-loader";
 import {HomeNavBar} from "../nav/nav-bars";
+import RootContext from "../context/root-context";
 
 const MainRouter = () => {
+    const context = useContext(RootContext)
     return (
         <BrowserRouter>
             <div className={"switchContainer"}>
