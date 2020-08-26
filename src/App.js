@@ -26,8 +26,8 @@ function App() {
       initialStatuses
   );
 
-  const handleChange = todo => {
-    dispatch({ type: 'DO_TODO', id: todo.id });
+  const handleStatusChange = status => {
+    dispatch({ type: 'UPDATE', id: status.id, now: status.now, day: status.day, week: status.week });
   };
 
   return (
