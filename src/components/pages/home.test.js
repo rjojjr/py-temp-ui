@@ -41,12 +41,11 @@ describe('home', () => {
            const { container, findByText } = render(
                 <App/>
             );
-
+            const label = await findByText("Py Temp");
             expect(container.querySelector("div#homeNav")).toBeInTheDocument();
             expect(container.querySelector("div.homePage")).toBeInTheDocument();
             expect(container.querySelector("footer")).toBeInTheDocument();
-
-            expect(findByText(sensors[0].room)).toBeInTheDocument();
+            expect(container.querySelector("table")).toBeInTheDocument();
         });
 
     })
