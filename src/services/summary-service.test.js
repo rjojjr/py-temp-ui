@@ -40,11 +40,8 @@ describe('summary service', () => {
             }
 
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(2);
             expect(statusArray.length).toBe(1);
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
-            expect(statusArray.pop().toString()).toBe(status.toString())
+            expect(statusArray.pop()).toStrictEqual(status)
         });
 
 
@@ -62,11 +59,9 @@ describe('summary service', () => {
             }
 
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(3);
+            expect(msgArray.length).toBe(1);
             expect(statusArray.length).toBe(0);
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
+            expect(msgArray.pop()).toBe(networkErrorMsg)
         });
 
 
@@ -86,11 +81,9 @@ describe('summary service', () => {
             }
 
             await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(3);
+            expect(msgArray.length).toBe(1);
             expect(statusArray.length).toBe(0);
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
+            expect(msgArray.pop()).toBe(networkErrorMsg)
         });
 
 
@@ -139,14 +132,12 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(4);
+            expect(msgArray.length).toBe(2);
             expect(statusArray.length).toBe(2);
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe({}.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(statusArray.pop().toString()).toBe(status2.toString())
-            expect(statusArray.pop().toString()).toBe(status.toString())
+            expect(msgArray.pop()).toBe(doneLoadingMsg)
+            expect(msgArray.pop()).toBe(loadingMsg)
+            expect(statusArray.pop()).toStrictEqual(status2)
+            expect(statusArray.pop()).toStrictEqual(status)
         });
 
 
@@ -164,14 +155,12 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(6);
+            expect(msgArray.length).toBe(4);
             expect(statusArray.length).toBe(0);
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
+            expect(msgArray.pop()).toBe(doneLoadingMsg)
+            expect(msgArray.pop()).toBe(networkErrorMsg)
+            expect(msgArray.pop()).toBe(networkErrorMsg)
+            expect(msgArray.pop()).toBe(loadingMsg)
         });
 
 
@@ -191,14 +180,12 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(6);
+            expect(msgArray.length).toBe(4);
             expect(statusArray.length).toBe(0);
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(networkErrorMsg.toString())
-            expect(msgArray.pop().toString()).toBe(loadingMsg.toString())
-            expect(msgArray.pop().toString()).toBe(doneLoadingMsg.toString())
+            expect(msgArray.pop()).toBe(doneLoadingMsg)
+            expect(msgArray.pop()).toBe(networkErrorMsg)
+            expect(msgArray.pop()).toBe(networkErrorMsg)
+            expect(msgArray.pop()).toBe(loadingMsg)
         });
 
 
