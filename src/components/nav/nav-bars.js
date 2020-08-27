@@ -11,7 +11,7 @@ export const HomeNavBar = () => {
                 <Navbar bg="dark" variant="dark">
                     <Navbar.Brand as={Link} to="/">Py Temp</Navbar.Brand>
                     <Nav className="mr-auto">
-                        <NavDropdown title="Bot" id="collasible-nav-dropdown">
+                        <NavDropdown title="Menu" id="collasible-nav-dropdown">
                             <NavDropdown.Item as={Link} to="/" id={"summaryLink"}>Summary</NavDropdown.Item>
 
                         </NavDropdown>
