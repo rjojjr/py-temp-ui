@@ -66,3 +66,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+See [this](https://serverfault.com/questions/1011413/nodejs-react-systemd-service-not-working/1011435#1011435) to run as systemd service
