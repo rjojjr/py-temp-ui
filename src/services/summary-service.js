@@ -11,11 +11,11 @@ export async function getAllStatuses(handleMsg, handleStatus) {
 export async function getStatus(handleMsg, handleStatus) {
     try {
         const apiResponse = await getSummary();
-        console.log("done", apiResponse)
         if(apiResponse.status === 200){
             for (var index in apiResponse.data) {
                 const statusJson = {
                     id: apiResponse.data[index].sensor,
+                    lastUpdate: `${apiResponse.data[index].lastUpdate}`,
                     now: apiResponse.data[index].now,
                     day: apiResponse.data[index].day,
                     week: apiResponse.data[index].week
