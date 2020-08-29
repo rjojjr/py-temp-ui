@@ -19,19 +19,19 @@ const basicReducer = (state, action) => {
     switch (action.type) {
         case 'UPDATE_STATUS':
             if(state.statuses.length == 0){
-                return {...state, statuses: [{id: action.id, now: action.now, day: action.day, week: action.week}]};
+                return {...state, statuses: [{id: action.id, lastUpdate: action.lastUpdate,  now: action.now, day: action.day, week: action.week}]};
             }else{
                 let found = false;
                 let statuses = state.statuses.map(status => {
                     if (status.id === action.id) {
-                        return {id: action.id, now: action.now, day: action.day, week: action.week};
+                        return {id: action.id, lastUpdate: action.lastUpdate, now: action.now, day: action.day, week: action.week};
                         found = true;
                     } else {
                         return status;
                     }
                 });
                 if(!found){
-                    statuses.push({id: action.id, now: action.now, day: action.day, week: action.week})
+                    statuses.push({id: action.id, lastUpdate: action.lastUpdate, now: action.now, day: action.day, week: action.week})
                 }
                 return {...state, statuses: statuses};
             }
@@ -61,7 +61,8 @@ function App() {
 
     const handleStatusChange = status => {
 
-        dispatch({type: 'UPDATE_STATUS', id: status.id, now: status.now, day: status.day, week: status.week});
+        console.log('status', status);
+        dispatch({type: 'UPDATE_STATUS', id: status.id, lastUpdate: status.lastUpdate, now: status.now, day: status.day, week: status.week});
     };
 
     const handleMsgChange = msg => {

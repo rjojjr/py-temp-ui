@@ -16,6 +16,14 @@ const StatusCard = ({status}) => {
                 </tr>
                 <tr>
                     <td>
+                        Last Update:
+                    </td>
+                    <td>
+                        <p>{status.lastUpdate}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Now:
                     </td>
                     <td>
