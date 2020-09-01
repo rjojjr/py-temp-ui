@@ -59,8 +59,6 @@ function App() {
     );
 
     const handleStatusChange = status => {
-
-        console.log('status', status);
         dispatch({type: 'UPDATE_STATUS', id: status.id, lastUpdate: status.lastUpdate, now: status.now, day: status.day, week: status.week});
     };
 

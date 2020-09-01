@@ -24,7 +24,7 @@ const Home = props => {
                         <div className={"page homePage"}>
                             {state.msg && (<h1>{state.msg.msg}</h1>)}
                             {state.statuses && state.statuses.map((status, key) => {
-                                return <StatusCard status={status}/>
+                                return <StatusCard key={key} status={status}/>
                             })}
                             <Button variant={"dark"} type={"button"} onClick={() => getAllStatuses( state.handleMsgChange,  state.handleStatusChange)} >Refresh</Button>
                         </div>

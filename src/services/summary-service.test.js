@@ -8,15 +8,21 @@ describe('summary service', () => {
 
         const success = {
             status: 200,
-            data: {
-                now: [70, 70],
-                day: [70, 70],
-                week: [70, 70]
-            }
+            data: [
+                {
+                    sensor: "office",
+                    lastUpdate: "now",
+                    now: [70, 70],
+                    day: [70, 70],
+                    week: [70, 70]
+                }
+            ]
+
         }
 
         const status = {
-            id: sensors[0].room,
+            id: "office",
+            lastUpdate: "now",
             now: [70, 70],
             day: [70, 70],
             week: [70, 70]
@@ -39,7 +45,7 @@ describe('summary service', () => {
                 statusArray.push(msg);
             }
 
-            await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
+            await getStatus(msgHandlerMock, stsHandlerMock);
             expect(statusArray.length).toBe(1);
             expect(statusArray.pop()).toStrictEqual(status)
         });
@@ -58,7 +64,7 @@ describe('summary service', () => {
                 statusArray.push(msg);
             }
 
-            await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
+            await getStatus(msgHandlerMock, stsHandlerMock);
             expect(msgArray.length).toBe(1);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop()).toBe(networkErrorMsg)
@@ -80,7 +86,7 @@ describe('summary service', () => {
                 statusArray.push(msg);
             }
 
-            await getStatus(sensors[0], msgHandlerMock, stsHandlerMock);
+            await getStatus(msgHandlerMock, stsHandlerMock);
             expect(msgArray.length).toBe(1);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop()).toBe(networkErrorMsg)
@@ -93,22 +99,21 @@ describe('summary service', () => {
 
         const success = {
             status: 200,
-            data: {
-                now: [70, 70],
-                day: [70, 70],
-                week: [70, 70]
-            }
+            data: [
+                {
+                    sensor: "office",
+                    lastUpdate: "now",
+                    now: [70, 70],
+                    day: [70, 70],
+                    week: [70, 70]
+                }
+            ]
+
         }
 
         const status = {
-            id: sensors[0].room,
-            now: [70, 70],
-            day: [70, 70],
-            week: [70, 70]
-        }
-
-        const status2 = {
-            id: sensors[1].room,
+            id: "office",
+            lastUpdate: "now",
             now: [70, 70],
             day: [70, 70],
             week: [70, 70]
@@ -133,10 +138,9 @@ describe('summary service', () => {
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
             expect(msgArray.length).toBe(2);
-            expect(statusArray.length).toBe(2);
+            expect(statusArray.length).toBe(1);
             expect(msgArray.pop()).toBe(doneLoadingMsg)
             expect(msgArray.pop()).toBe(loadingMsg)
-            expect(statusArray.pop()).toStrictEqual(status2)
             expect(statusArray.pop()).toStrictEqual(status)
         });
 
@@ -155,10 +159,9 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(4);
+            expect(msgArray.length).toBe(3);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop()).toBe(doneLoadingMsg)
-            expect(msgArray.pop()).toBe(networkErrorMsg)
             expect(msgArray.pop()).toBe(networkErrorMsg)
             expect(msgArray.pop()).toBe(loadingMsg)
         });
@@ -180,10 +183,9 @@ describe('summary service', () => {
             }
 
             await getAllStatuses(msgHandlerMock, stsHandlerMock);
-            expect(msgArray.length).toBe(4);
+            expect(msgArray.length).toBe(3);
             expect(statusArray.length).toBe(0);
             expect(msgArray.pop()).toBe(doneLoadingMsg)
-            expect(msgArray.pop()).toBe(networkErrorMsg)
             expect(msgArray.pop()).toBe(networkErrorMsg)
             expect(msgArray.pop()).toBe(loadingMsg)
         });
