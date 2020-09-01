@@ -4,6 +4,7 @@ import Footer from "../global/footer";
 import RootContext from "../context/root-context";
 import StatusCard from "../status/status";
 import LoadingView from "../global/LoadingView";
+import {getAllStatuses} from "../../services/summary-service";
 
 const Home = props => {
 
@@ -23,6 +24,7 @@ const Home = props => {
                             {state.statuses && state.statuses.map((status, key) => {
                                 return <StatusCard status={status}/>
                             })}
+                            <button onClick={() => getAllStatuses( state.handleMsgChange,  state.handleStatusChange)} >Refresh</button>
                         </div>
 
                     </section>

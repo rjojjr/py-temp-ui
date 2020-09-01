@@ -22,15 +22,14 @@ const basicReducer = (state, action) => {
                 return {...state, statuses: [{id: action.id, lastUpdate: action.lastUpdate,  now: action.now, day: action.day, week: action.week}]};
             }else{
                 let found = false;
-                let statuses = state.statuses.map(status => {
+                let statuses = state.statuses.filter(status => {
                     if (status.id === action.id) {
-                        return {id: action.id, lastUpdate: action.lastUpdate, now: action.now, day: action.day, week: action.week};
-                        found = true;
+                        return false;
                     } else {
-                        return status;
+                        return true;
                     }
                 });
-                if(!found){
+                if(true){
                     statuses.push({id: action.id, lastUpdate: action.lastUpdate, now: action.now, day: action.day, week: action.week})
                 }
                 return {...state, statuses: statuses};
