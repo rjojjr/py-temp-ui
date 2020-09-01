@@ -6,6 +6,8 @@ import StatusCard from "../status/status";
 import LoadingView from "../global/LoadingView";
 import {getAllStatuses} from "../../services/summary-service";
 
+import Button from 'react-bootstrap/Button';
+
 const Home = props => {
 
     const state = useContext(RootContext)
@@ -24,7 +26,7 @@ const Home = props => {
                             {state.statuses && state.statuses.map((status, key) => {
                                 return <StatusCard status={status}/>
                             })}
-                            <button onClick={() => getAllStatuses( state.handleMsgChange,  state.handleStatusChange)} >Refresh</button>
+                            <Button variant={"dark"} type={"button"} onClick={() => getAllStatuses( state.handleMsgChange,  state.handleStatusChange)} >Refresh</Button>
                         </div>
 
                     </section>
