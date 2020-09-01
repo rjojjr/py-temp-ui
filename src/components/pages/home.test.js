@@ -41,6 +41,9 @@ describe('home', () => {
             const {container, findByText} = render(
                 <App/>
             );
+
+            expect(container.querySelector("div.loader")).toBeInTheDocument();
+
             const label = await findByText("Py Temp");
             expect(container.querySelector("div#homeNav")).toBeInTheDocument();
             expect(container.querySelector("div.homePage")).toBeInTheDocument();

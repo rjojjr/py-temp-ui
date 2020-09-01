@@ -15,6 +15,7 @@ const LoadingView = ({ isLoading }) => {
     }
   };
   return (
+      <div className={"loader"}>
     <ReactModal
       isOpen={isLoading}
       style={customModalStyles}
@@ -28,6 +29,7 @@ const LoadingView = ({ isLoading }) => {
         width={'10rem'}
       />
     </ReactModal>
+      </div>
   );
 };
 
