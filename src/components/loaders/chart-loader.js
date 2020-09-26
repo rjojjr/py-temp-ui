@@ -26,3 +26,4 @@ const ChartLoader = () => {
         </div>
     );
 }
+export default ChartLoader

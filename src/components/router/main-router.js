@@ -11,6 +11,7 @@ import Footer from "../global/footer";
 import HomeLoader from "../loaders/home-loader";
 import {HomeNavBar} from "../nav/nav-bars";
 import RootContext from "../context/root-context";
+import ChartLoader from "../loaders/chart-loader";
 
 const MainRouter = () => {
     const context = useContext(RootContext)
@@ -21,6 +22,9 @@ const MainRouter = () => {
                 <Switch>
                     <Route exact path="/">
                         <HomeLoader />
+                    </Route>
+                    <Route exact path="/charts">
+                        <ChartLoader />
                     </Route>
                 </Switch>
             </div>
