@@ -18,7 +18,7 @@ const ChartPage = props => {
     const [endDate, setEndDate] = useState(new Date(Date.now()));
 
     const handleReload = () => {
-        fetchChart('temp', parseDate(startDate), parseDate(endDate));
+        fetchChart(state.handleMsgChange, state.handleChartChange, 'temp', parseDate(startDate), parseDate(endDate));
     }
 
     return(
