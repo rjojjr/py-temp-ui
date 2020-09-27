@@ -12,7 +12,8 @@ import MainRouter from "./components/router/main-router";
 const initialState = {
     isLoading: false,
     statuses: [],
-    msg: {}
+    msg: {},
+    chartIntervals: []
 };
 
 const basicReducer = (state, action) => {
@@ -43,6 +44,8 @@ const basicReducer = (state, action) => {
             return {...state, isLoading: false};
         case 'LOADING':
             return {...state, isLoading: true};
+        case 'UPDATE_CHART':
+            return {...state, chartIntervals: action.intervals};
         default:
             return state;
     }
@@ -60,6 +63,10 @@ function App() {
 
     const handleStatusChange = status => {
         dispatch({type: 'UPDATE_STATUS', id: status.id, lastUpdate: status.lastUpdate, now: status.now, day: status.day, week: status.week});
+    };
+
+    const handleChartChange = intervals => {
+        dispatch({type: 'UPDATE_CHART', intervals: intervals});
     };
 
     const handleMsgChange = msg => {
