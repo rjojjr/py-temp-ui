@@ -19,4 +19,5 @@ export const getChart = (type, start, end) => {
     }
 
     return axios.post(`http://192.168.1.169:8080/chart`, data);
-}
+};
+
