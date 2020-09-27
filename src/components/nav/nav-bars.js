@@ -13,7 +13,7 @@ export const HomeNavBar = () => {
                     <Nav className="mr-auto">
                         <NavDropdown title="Menu" id="collasible-nav-dropdown">
                             <NavDropdown.Item as={Link} to="/" id={"summaryLink"}>Summary</NavDropdown.Item>
-
+                            <NavDropdown.Item as={Link} to="/charts" id={"chartsLink"}>Charts</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar>
