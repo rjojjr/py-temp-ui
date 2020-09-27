@@ -83,8 +83,8 @@ function App() {
     };
 
     const contextValue = useMemo(() => {
-        return {...state, handleStatusChange, handleMsgChange};
-    }, [state, handleStatusChange, handleMsgChange]);
+        return {...state, handleStatusChange, handleMsgChange, handleChartChange};
+    }, [state, handleStatusChange, handleMsgChange, handleChartChange]);
 
     return (
 
