@@ -42,9 +42,9 @@ const ChartPage = props => {
                                         <Button variant={"dark"} type={"button"}
                                                 onClick={() => handleReload()}>Refresh</Button>
                                         <hr/>
-                                        <TempChart data={state.chartIntervals}/>
                                     </div>
                                     <div className={"chartContainer"}>
+                                        <TempChart data={state.chartIntervals}/>
                                     </div>
                                 </>
                             }
