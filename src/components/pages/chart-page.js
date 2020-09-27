@@ -5,7 +5,7 @@ import {HomeNavBar} from "../nav/nav-bars";
 import Footer from "../global/footer";
 import {today} from "../../services/date-service";
 import GenericDatePicker from "../global/GenericDatePicker";
-import {getChart} from "../../services/chart-service";
+import {fetchChart} from "../../services/chart-service";
 import {getAllStatuses} from "../../services/summary-service";
 import Button from "react-bootstrap/Button";
 import TempChart from "../chart/TempChart";
@@ -19,7 +19,7 @@ const ChartPage = props => {
     const [endDate, setEndDate] = useState(today());
 
     const handleReload = () => {
-        getChart('temp', startDate, endDate);
+        fetchChart('temp', startDate, endDate);
     }
 
     return(

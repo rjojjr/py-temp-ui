@@ -1,7 +1,7 @@
 import { getChart } from "./axios-service";
-import { networkErrorMsg, loadingMsg, doneLoadingMsg, sensors } from "../constants";
+import { networkErrorMsg, loadingMsg, doneLoadingMsg } from "../constants";
 
-export async function getChart(handleMsg, handleChart, type, start, end) {
+export async function fetchChart(handleMsg, handleChart, type, start, end) {
     handleMsg(loadingMsg);
     try{
         const apiResponse = await getChart(type, start, end);
