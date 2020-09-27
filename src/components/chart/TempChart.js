@@ -6,7 +6,7 @@ import {
 const TempChart = ({data}) => {
     return (
         <LineChart
-            width={800}
+            width={1000}
             height={415}
             data={data}
             margin={{

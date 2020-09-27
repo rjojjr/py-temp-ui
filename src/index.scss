@@ -87,6 +87,10 @@ html, body, .viewport {
   //height: 80%;
 }
 
+.chartContainer {
+  overflow-x: auto;
+}
+
 .scatterChart{
   width: 100%;
 }

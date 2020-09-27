@@ -33,13 +33,13 @@ const ChartPage = props => {
                         <div className={"page chartPage"}>
                             {state.msg && (<h1>{state.msg.msg}</h1>)}
                             {
-                                <>
+                                <div className={"chartContainer"}>
                                     <GenericDatePicker currentDate={startDate} changeDate={setStartDate}>Start Date</GenericDatePicker>
                                     <GenericDatePicker currentDate={endDate} changeDate={setEndDate}>End Date</GenericDatePicker>
                                     <Button variant={"dark"} type={"button"} onClick={() => handleReload()}>Refresh</Button>
                                     <hr/>
                                     <TempChart data={state.chartIntervals} />
-                                </>
+                                </div>
                             }
                         </div>
 
