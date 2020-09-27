@@ -1,9 +1,9 @@
 import React, {useContext, useEffect} from "react";
 import RootContext from "../context/root-context";
 import LoadingView from "../global/LoadingView";
-import Home from "../pages/home";
 import {fetchChart} from "../../services/chart-service";
 import {today} from "../../services/date-service";
+import ChartPage from '../pages/chart-page'
 
 
 const ChartLoader = () => {
@@ -22,7 +22,7 @@ const ChartLoader = () => {
         <div className={"admin-container"}>
             <LoadingView isLoading={state.isLoading} message={"Loading..."}/>
             {!state.isLoading && (
-                <Home/>
+                <ChartPage />
             )}
         </div>
     );

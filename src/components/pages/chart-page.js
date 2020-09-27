@@ -3,10 +3,9 @@ import RootContext from "../context/root-context";
 import LoadingView from "../global/LoadingView";
 import {HomeNavBar} from "../nav/nav-bars";
 import Footer from "../global/footer";
-import {today} from "../../services/date-service";
+import {parseDate, today} from "../../services/date-service";
 import GenericDatePicker from "../global/GenericDatePicker";
 import {fetchChart} from "../../services/chart-service";
-import {getAllStatuses} from "../../services/summary-service";
 import Button from "react-bootstrap/Button";
 import TempChart from "../chart/TempChart";
 
@@ -15,11 +14,11 @@ const ChartPage = props => {
 
     const state = useContext(RootContext);
 
-    const [startDate, setStartDate] = useState(today());
-    const [endDate, setEndDate] = useState(today());
+    const [startDate, setStartDate] = useState(new Date(Date.now()));
+    const [endDate, setEndDate] = useState(new Date(Date.now()));
 
     const handleReload = () => {
-        fetchChart('temp', startDate, endDate);
+        fetchChart('temp', parseDate(startDate), parseDate(endDate));
     }
 
     return(
@@ -55,3 +54,5 @@ const ChartPage = props => {
     )
 
 }
+
+export default ChartPage;
