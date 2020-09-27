@@ -10,7 +10,7 @@ const ChartLoader = () => {
 
 
     const state = useContext(RootContext)
-    
+
     useEffect( () => {
         getChart( state.handleMsgChange,  state.handleChartChange, 'temp', today(), today());
     }, [getChart]);
