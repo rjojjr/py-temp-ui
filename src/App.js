@@ -13,7 +13,10 @@ const initialState = {
     isLoading: false,
     statuses: [],
     msg: {},
-    chartIntervals: []
+    chartIntervals: [],
+    chartStart: new Date(Date.now()),
+    chartEnd: new Date(Date.now()),
+    chartType: "temp"
 };
 
 const basicReducer = (state, action) => {
@@ -46,6 +49,12 @@ const basicReducer = (state, action) => {
             return {...state, isLoading: true};
         case 'UPDATE_CHART':
             return {...state, chartIntervals: action.intervals};
+        case 'UPDATE_CHART_START':
+            return {...state, chartStart: action.date};
+        case 'UPDATE_CHART_END':
+            return {...state, chartEnd: action.date};
+        case 'UPDATE_CHART_TYPE':
+            return {...state, chartType: action.chartType};
         default:
             return state;
     }
@@ -69,6 +78,12 @@ function App() {
         dispatch({type: 'UPDATE_CHART', intervals: intervals});
     };
 
+    const changeChart = (start, end, type) => {
+        dispatch({type: 'UPDATE_CHART_START', date: start});
+        dispatch({type: 'UPDATE_CHART_END', date: end});
+        dispatch({type: 'UPDATE_CHART_TYPE', chartType: type});
+    }
+
     const handleMsgChange = msg => {
 
         if (Object.keys(msg).length === 0) {
@@ -83,8 +98,9 @@ function App() {
     };
 
     const contextValue = useMemo(() => {
-        return {...state, handleStatusChange, handleMsgChange, handleChartChange};
-    }, [state, handleStatusChange, handleMsgChange, handleChartChange]);
+        return {...state, handleStatusChange, handleMsgChange, handleChartChange, changeChart};
+    },
+        [state, handleStatusChange, handleMsgChange, handleChartChange, changeChart]);
 
     return (
 
