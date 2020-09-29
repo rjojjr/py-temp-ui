@@ -8,7 +8,8 @@ import GenericDatePicker from "../global/GenericDatePicker";
 import {fetchChart} from "../../services/chart-service";
 import Button from "react-bootstrap/Button";
 import TempChart from "../chart/TempChart";
-import {Select} from "react-select";
+import Select from "react-select";
+import DiffChart from "../chart/DiffChart";
 
 
 const ChartPage = props => {
@@ -45,15 +46,17 @@ const ChartPage = props => {
             state.changeChart(startDate, endDate, 'temp');
             setChartType('temp');
             setTypeSelected(1);
+            handleReload();
         } else {
             state.changeChart(startDate, endDate, 'diff');
             setChartType('diff');
             setTypeSelected(2);
+            handleReload();
         }
     }
 
     const handleReload = () => {
-        fetchChart(state.handleMsgChange, state.handleChartChange, 'temp', parseDate(startDate), parseDate(endDate));
+        fetchChart(state.handleMsgChange, state.handleChartChange, chartType, parseDate(startDate), parseDate(endDate));
     }
 
     return (
@@ -81,7 +84,12 @@ const ChartPage = props => {
                                         <hr/>
                                     </div>
                                     <div className={"chartContainer"}>
-                                        <TempChart data={state.chartIntervals}/>
+                                        {chartType === 'temp' && (
+                                            <TempChart data={state.chartIntervals}/>
+                                        )}
+                                        {chartType === 'diff' && (
+                                            <DiffChart data={state.chartIntervals}/>
+                                        )}
                                     </div>
                                 </>
                             }
