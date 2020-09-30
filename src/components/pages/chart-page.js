@@ -46,17 +46,21 @@ const ChartPage = props => {
             state.changeChart(startDate, endDate, 'temp');
             setChartType('temp');
             setTypeSelected(1);
-            handleReload();
+            handleChartTypeChange('temp');
         } else {
             state.changeChart(startDate, endDate, 'diff');
             setChartType('diff');
             setTypeSelected(2);
-            handleReload();
+            handleChartTypeChange('diff');
         }
     }
 
     const handleReload = () => {
         fetchChart(state.handleMsgChange, state.handleChartChange, chartType, parseDate(startDate), parseDate(endDate));
+    }
+
+    const handleChartTypeChange = (type) => {
+        fetchChart(state.handleMsgChange, state.handleChartChange, type, parseDate(startDate), parseDate(endDate));
     }
 
     return (
