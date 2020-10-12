@@ -2,6 +2,7 @@ import { getSummary } from "./axios-service"
 import { networkErrorMsg, loadingMsg, doneLoadingMsg, sensors } from "../constants";
 
 export async function getAllStatuses(handleMsg, handleStatus) {
+    handleMsg({});
     handleMsg(loadingMsg);
     await getStatus(handleMsg, handleStatus);
 
