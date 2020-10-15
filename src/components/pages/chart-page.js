@@ -14,7 +14,7 @@ import DiffChart from "../chart/DiffChart";
 
 const ChartPage = props => {
 
-    const CHART_TYPES = [{label: 'Temperature Average', value: 1}, {label: 'Temperature Diff', value: 2}];
+    const CHART_TYPES = [{label: 'Temperature Average', value: 1}, {label: 'Temperature Highs and Lows', value: 2}];
 
     const initChartType = (type) => {
         if(type === 'temp') {
@@ -55,6 +55,14 @@ const ChartPage = props => {
         }
     }
 
+    const getChartLabel = () => {
+        if (state.chartType === "temp"){
+            return "Temperature Average"
+        } else {
+            return "Temperature Highs and Lows"
+        }
+    }
+
     const handleReload = () => {
         fetchChart(state.handleMsgChange, state.handleChartChange, chartType, parseDate(startDate), parseDate(endDate));
     }
@@ -77,6 +85,7 @@ const ChartPage = props => {
                             {
                                 <>
                                     <div>
+                                        <h1>{getChartLabel()}</h1>
                                         <Select options={CHART_TYPES} onChange={updateType} value={typeSelected}
                                                  placeholder={'Chart Type'}></Select>
                                         <GenericDatePicker currentDate={startDate} changeDate={updateStart}>Start
